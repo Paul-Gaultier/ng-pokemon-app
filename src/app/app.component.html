@@ -1,28 +1,18 @@
-<h1>Liste de Pokémons</h1>
-
-<label>
-    <input
-    #input
-
-        (keyup)="selectPokemon(input.value)"
-        type="number"
-        
-        >
-<p>{{pokemonSelected?.name}}</p>
-<!--déclarartion d'une var référencé grâce à #. Ici nous récuperons sa valeur-->
-
-
-
-<h1>{{pokemonList[0].name}}</h1>
-<h1>{{pokemonList[1].name}}</h1>
-<h1>{{pokemonList[2].name}}</h1>
-<h1>{{pokemonList[3].name}}</h1>
-<h1>{{pokemonList[4].name}}</h1>
-<h1>{{pokemonList[5].name}}</h1>
-<h1>{{pokemonList[6].name}}</h1>
-<h1>{{pokemonList[7].name}}</h1>
-<h1>{{pokemonList[8].name}}</h1>
-<h1>{{pokemonList[9].name}}</h1>
-<h1>{{pokemonList[10].name}}</h1>
-<h1>{{pokemonList[11].name}}</h1>
-
+<h1 class='center'>Pokémons</h1>
+<div class='container'>
+    <div class="row">
+        <div *ngFor='let pokemon of pokemonList' class="col m4 s6">
+            <div class="card horizontal">
+                <div class="card-image">
+                    <img [src]="pokemon.picture" [alt]="pokemon.name" />
+                </div>
+                <div class="card-stacked">
+                    <div class="card-content">
+                        <p>{{ pokemon.name }}</p>
+                        <p><small>{{ pokemon.created }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
