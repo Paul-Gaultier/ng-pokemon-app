@@ -1,22 +1,43 @@
-import { Component, OnInit } from '@angular/core'; //importation de notre interface OnInit
+import { Component, OnInit } from '@angular/core';
+import { POKEMONS } from './mock-pokemon-list';
+import { Pokemon } from './pokemon';
 
 @Component({
   selector: 'app-root',
-
-
-  template: `
-    <h1>{{pokemonList[1]}}</h1>
-  `,
+  templateUrl: 'app.component.html',
   styles: []
 })
-export class AppComponent implements OnInit{//implementation de notre interface au niveau de notre composant
+export class AppComponent implements OnInit{
 
-  //propriété pokemon
-  pokemonList = ['Bulbizarre','Salamèche','Carapuce'];
+  pokemonList: Pokemon[] = POKEMONS;
+  //typage permettant de s'assurer que c'est bien un tab selon notre modèle qui sera envoyé dans ma propriété
 
-    ngOnInit(): void {//def de la méthode associée à notre nouvelle interface (Oninit)
-  
-      console.table(this.pokemonList);//Une table de Pokemons dans notre console
-      //this. nous permet d'acceder à la propriété de notre classe,c-a-d PokemonList autrement Angular ne sais pas de quoi il s'agit
+  pokemonSelected: Pokemon | undefined;
+
+    ngOnInit(): void {
+      console.table(this.pokemonList);
   }
+
+  selectPokemon(pokemonId: string){
+
+    const pokemon: Pokemon | undefined = this.pokemonList.find(pokemon => pokemon.id === +pokemonId)
+
+
+    if(pokemon){
+
+      console.log(`vous avez cliqué sur le pokemon ${pokemon.name}`)  
+
+
+      this.pokemonSelected = pokemon
+
+    }else{
+
+      console.log("Vous avez demandé un pokémon qui n'existe pas");
+      this.pokemonSelected = pokemon
+    }
+
+    
+  }
+
+
 }
