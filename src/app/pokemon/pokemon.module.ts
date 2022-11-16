@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PokemonService } from './pokemon.service';
 import { ListPokemonComponent } from './list-pokemon/list-pokemon.component';
 import { DetailPokemonComponent } from './detail-pokemon/detail-pokemon.component';
 import { BorderCardDirective } from './border-card.directive';
@@ -29,6 +30,7 @@ const pokemonRoutes: Routes = [
      * je lui ajoute des routes grâce à l'option .forChild
      * et a l'intérieur je passe mes routes pokemonRoutes
      */
-  ]
+  ],
+  providers: [ PokemonService ]//On fourni ainsi notre service au module
 })
 export class PokemonModule { }

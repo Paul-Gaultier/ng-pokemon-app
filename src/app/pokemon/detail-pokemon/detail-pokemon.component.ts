@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { POKEMONS } from '../mock-pokemon-list';
 import { Pokemon } from '../pokemon';
+import { PokemonService } from '../pokemon.service'
 
 @Component({
   selector: 'app-detail-pokemon',
@@ -14,13 +15,12 @@ export class DetailPokemonComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private pokemonservice: PokemonService
     ) { }
   //ActivatedRoute : service permettant d'acceder à la route courante
 
   ngOnInit(){
-
-    this.pokemonList = POKEMONS;//ma liste
 
     const pokemonId: string | null = this.route.snapshot.paramMap.get('id');
     /**graçe à ActivatedRoute, j'utilise les propriétes snapshot et paramMap
@@ -31,7 +31,7 @@ export class DetailPokemonComponent implements OnInit {
 
     if(pokemonId){
 
-      this.pokemon = this.pokemonList.find(pokemon => pokemon.id === +pokemonId )
+      this.pokemon = this.pokemonservice.getPokemonById(+pokemonId)
       /**Attribuer à notre propriété "pokemon", le pokemon qui à l'id
        * = à celui que m'a demandé User via l'Url
        */
