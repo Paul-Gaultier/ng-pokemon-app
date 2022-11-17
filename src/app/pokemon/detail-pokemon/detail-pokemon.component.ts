@@ -31,10 +31,11 @@ export class DetailPokemonComponent implements OnInit {
 
     if(pokemonId){
 
-      this.pokemon = this.pokemonservice.getPokemonById(+pokemonId)
-      /**Attribuer à notre propriété "pokemon", le pokemon qui à l'id
-       * = à celui que m'a demandé User via l'Url
-       */
+      this.pokemonservice.getPokemonById(+pokemonId)
+      .subscribe(pokemon => this.pokemon = pokemon)
+      
+    }else{
+      this.pokemon = undefined
     }
   }
 

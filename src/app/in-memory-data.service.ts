@@ -9,7 +9,9 @@ export class InMemoryDataService implements InMemoryDbService {//Implementation 
 
     createDb(){
 
-      return { POKEMONS }
+      const pokemons = POKEMONS;
+
+      return { pokemons }
 
     }//Par cette méthode, nous simulons ainsi une API web (= BDD avec toutes les méthodes CRUD)
 }
