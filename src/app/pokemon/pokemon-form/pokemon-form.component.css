@@ -1,0 +1,13 @@
+.ng-valid[required]{/*si valide:
+    [tous les élemnt ayant l'attribut required]*/
+
+    border-left: 5px solid #42A948;/*Afficher une bordure verte à gauche*/
+
+}
+
+
+.ng-invalid:not(form){
+    /*si invalide -> pour tous les elemnt qui ne sont pas de type Form*/
+
+    border-left: 5px solid #A94442;
+}

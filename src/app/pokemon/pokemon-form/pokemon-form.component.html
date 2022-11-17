@@ -1,0 +1,84 @@
+<form *ngIf="pokemon" (ngSubmit)="onSubmit()" #pokemonForm="ngForm">
+    <!--#pokemonForm = "ngForm" : on crée ainsi une var référencée dna stout le Template PokemonForm
+    On demande ainsi a Angular de na triater ce From comme un Form classique
+"pokemonForm deveint un objet géré par Angular (ngForm)"-->
+    <div class="row">
+        <div class="col s8 offset-s2">
+            <div class="card-panel">
+
+                <!-- Pokemon name -->
+                <div class="form-group">
+                    <label for="name">Nom</label>
+                    <input type="text" class="form-control" id="name" required pattern="^[a-zA-Z0-9àéèç]{1,25}$"
+                        [(ngModel)]="pokemon.name" name="name" #name="ngModel">
+                    <!--[()]
+                    [] : permet de pousser les données du composant vers la vue
+                    () : syntaxe de liaison d'évent, du Template vers le composant
+                    en combinat les 2, nous avons une liaison bi-directionnelle
+                    Lorsque User va éffectuer une modif, on sera informé coté composnant
+                    Et coté composant lorsqu'on pilote notre Pokémon, la vue sera automatiquement mise à jour
+                
+                    #name ="ngModel" indique à Angular que désormais cet input(name) est un ngModel
+                    Il s'agit d'un objet-métier de Angular qui va representer un champs du Form, notament son état de validité, etc...-->
+                    <div [hidden]="name.valid || name.pristine" class="card-panel red accent-1">
+                        Le nom du pokémon est requis (1-25).
+                    </div>
+                </div>
+
+                <!-- Pokemon hp (points de vie)-->
+                <div class="form-group">
+                    <label for="hp">Point de vie</label>
+                    <input type="number" class="form-control" id="hp" required pattern="^[0-9]{1,3}$"
+                        [(ngModel)]="pokemon.hp" name="hp" #hp="ngModel">
+                    <div [hidden]="hp.valid || hp.pristine" class="card-panel red accent-1">
+                        Les points de vie du pokémon sont compris entre 0 et 999.
+                    </div>
+                </div>
+
+                <!-- Pokemon cp (dégats)-->
+                <div class="form-group">
+                    <label for="cp">Dégâts</label>
+                    <input type="number" class="form-control" id="cp" required pattern="^[0-9]{1,2}$"
+                        [(ngModel)]="pokemon.cp" name="cp" #cp="ngModel">
+                    <div [hidden]="cp.valid || cp.pristine" class="card-panel red accent-1">
+                        Les dégâts du pokémon sont compris entre 0 et 99.
+                    </div>
+                </div>
+
+                <!-- Pokemon types -->
+                <form class="form-group">
+                    <label for="types">Types</label>
+                    <!--construction d'un checkbox depuis une boucle NgFor sur Types-->
+                    <p *ngFor="let type of types">
+                        <label>
+                            <input type="checkbox" class="filled-in" id="{{ type }}" [value]="type"
+                                [checked]="hasType(type)" 
+                                [disabled]="!isTypesValid(type)"
+                                (change)="selectType($event, type)" />
+                                <!--[disable]="!isTypeValid(type"
+                                si User n'a pas respecté nos règles de validation, c-a-d que les types
+                                ne sont pas valides, par ex: 3 cases sélectionnées, on va friser (rendre incheckable)
+                                les autres champs, ou s'il a 1 seul type de coché, on va friser la case pour l'empecher de l'enlever
+                            
+                                (change) On écoute l'Event -> coché/décoché et lui associe la méthode selecType-->
+                            <span [attr.for]="type">
+                                <div class="{{ type | pokemonTypeColor }}">
+                                    {{ type }}
+                                </div>
+                            </span>
+                        </label>
+                    </p>
+                </form>
+
+                <!-- Submit button -->
+                <div class="divider"></div>
+                <div class="section center">
+                    <button type="submit" class="waves-effect waves-light btn" [disabled]="!pokemonForm.form.valid">
+                        Valider</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+<h3 *ngIf="!pokemon" class="center">Aucun pokémon à éditer...</h3>

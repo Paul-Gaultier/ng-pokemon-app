@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms'//importation de FormsModule
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { PokemonModule } from './pokemon/pokemon.module'
   ],
   imports: [//déclaration de tous les elemnts (venues d'autres fichiers) dont on a besoin dans notre module
     BrowserModule,
+    FormsModule,
     PokemonModule,//Nous relions ainsi notre module racine à son module fils pokemonModule
     AppRoutingModule,
   ],
