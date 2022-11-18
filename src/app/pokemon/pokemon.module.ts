@@ -7,17 +7,11 @@ import { BorderCardDirective } from './border-card.directive';
 import { PokemonTypeColorPipe } from './pokemon-type-color.pipe';
 import { RouterModule, Routes } from '@angular/router'
 import { FormsModule } from '@angular/forms';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
-import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component'
-=======
-import { PokemonFormComponent } from './pokemon-form/pokemon-form.component'
->>>>>>> 82c89c8 (création du Form)
-=======
-import { PokemonFormComponent } from './pokemon-form/pokemon-form.component';
-import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component'
->>>>>>> af9ac5a (gestion_Form)
+import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
+import { AddPokemonComponent } from './add-pokemon/add-pokemon.component'
+
+
 
 const pokemonRoutes: Routes = [
   {path: 'edit/pokemon/:id', component: EditPokemonComponent },
@@ -34,14 +28,9 @@ const pokemonRoutes: Routes = [
     ListPokemonComponent,
     DetailPokemonComponent,
     PokemonFormComponent,
-<<<<<<< HEAD
-<<<<<<< HEAD
     EditPokemonComponent,
-=======
->>>>>>> 82c89c8 (création du Form)
-=======
     EditPokemonComponent,
->>>>>>> af9ac5a (gestion_Form)
+    AddPokemonComponent,
   ],
   imports: [
     CommonModule,

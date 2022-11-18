@@ -67,18 +67,10 @@ export class PokemonFormComponent implements OnInit {
 
       onSubmit(){
 
-<<<<<<< HEAD
           //console.log('Formulaire soumis !');
           this.pokemonService.updatePokemon(this.pokemon)
           //Je récupère le pokémon mis à jours grace à àinput et j ele passe dans ma propriété
             .subscribe((pokemon)=>this.router.navigate(['/pokemon', this.pokemon.id]));
       } 
-=======
-          console.log('Formulaire soumis !');
-
-          this.router.navigate(['/pokemon', this.pokemon.id])
-          //redirection vers la page d'accueil
-      }
->>>>>>> 82c89c8 (création du Form)
 
 }
