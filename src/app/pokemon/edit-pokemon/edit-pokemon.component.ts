@@ -29,8 +29,12 @@ export class EditPokemonComponent implements OnInit {
     const pokemonId: string|null = this.route.snapshot.paramMap.get('id');
 
     if(pokemonId){
+<<<<<<< HEAD
       this.pokemonService.getPokemonById(+pokemonId)
       .subscribe(pokemon => this.pokemon = pokemon);
+=======
+      this.pokemon = this.pokemonService.getPokemonById(+pokemonId)
+>>>>>>> af9ac5a (gestion_Form)
     }else{
       this.pokemon = undefined
     }
