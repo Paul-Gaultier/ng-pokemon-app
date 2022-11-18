@@ -35,6 +35,18 @@
                     </div>
                 </div>
 
+                <!-- Pokemon picture-->
+                <div  *ngIf="isAddForm" class="form-group">
+                    <label for="picture">Image</label>
+                    <input type="url" class="form-control" id="picture" required
+                        [(ngModel)]="pokemon.picture" name="picture" #picture="ngModel">
+
+                    <div class="card-panel red accent-1"
+                    [hidden]="picture.valid || hp.pristine">
+                        L'mage du Pokémon est requise.
+                    </div>
+                </div>
+
                 <!-- Pokemon cp (dégats)-->
                 <div class="form-group">
                     <label for="cp">Dégâts</label>

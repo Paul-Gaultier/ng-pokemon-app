@@ -27,6 +27,19 @@ export class PokemonService {
       /**Of-> transforme une donnée simple en un flux de flux de donnée */
     }
 
+    addPokemon(pokemon: Pokemon): Observable<Pokemon | any>{
+
+      const httpOptions = {
+        headers: new HttpHeaders({'content-Type': 'application/json'})
+      }
+
+      return this.http.post('api/pokemons', pokemon, httpOptions).pipe(
+          tap((response)=> this.log(response)),
+          catchError((error)=>this.handleError(error, []))
+      )
+      
+    }
+
     updatePokemon(pokemon: Pokemon): Observable< null > {//on attend null car l'API renvoie null (erreur de l'API)
 
         const httpOptions = {
@@ -43,6 +56,9 @@ export class PokemonService {
         )
 
     }
+
+
+    
 
 
     getPokemonList(): Observable<Pokemon[]>{
