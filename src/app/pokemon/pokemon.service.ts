@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, tap } from 'rxjs';
 import { POKEMONS } from './mock-pokemon-list';
@@ -16,7 +17,7 @@ export class PokemonService {
     private http: HttpClient
   ){}//Injection du service httpClient
 
-    private log(response: Pokemon[] | Pokemon | undefined){
+    private log(response: Pokemon[] | Pokemon | undefined | any){
       console.table(response);
     }
 
@@ -24,6 +25,23 @@ export class PokemonService {
       console.error(error);
       return of(errorValue);
       /**Of-> transforme une donnée simple en un flux de flux de donnée */
+    }
+
+    updatePokemon(pokemon: Pokemon): Observable< null > {//on attend null car l'API renvoie null (erreur de l'API)
+
+        const httpOptions = {
+            headers: new HttpHeaders({'content-Type': 'application/json'})
+            /**Par cette méthode nous envoyons des données via notre requête
+             * Ces données sont envoyés dans un objet Json
+             */
+        }
+
+        return this.http.put('api/pokemons', pokemon, httpOptions).pipe(
+
+          tap((response)=> this.log(response)),
+          catchError((error)=>this.handleError(error, []))
+        )
+
     }
 
 
