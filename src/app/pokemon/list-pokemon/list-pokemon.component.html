@@ -1,6 +1,11 @@
 <h1 class='center'>Pokémons</h1>
 <div class='container'>
     <div class="row">
+
+
+        <app-search-pokemon></app-search-pokemon>
+
+        
         <div *ngFor='let pokemon of pokemonList' class="col m4 s6">
             <div class="card horizontal" pkmnBorderCard="#FF0000" (click)="goToPokemon(pokemon)">
                 <div class="card-image">

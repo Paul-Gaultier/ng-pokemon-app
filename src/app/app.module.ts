@@ -8,11 +8,13 @@ import { PokemonModule } from './pokemon/pokemon.module';
 import { HttpClientModule } from '@angular/common/http';//import du client HttpClientModule
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api'; //importation de la méthode HttpClientMemoryWebModule
 import { InMemoryDataService } from './in-memory-data.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [//liste de tous les composants, les directives, les pipes appartenant au module
     AppComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginComponent
   ],
   imports: [//déclaration de tous les elemnts (venues d'autres fichiers) dont on a besoin dans notre module
     BrowserModule,
